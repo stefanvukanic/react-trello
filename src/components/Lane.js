@@ -21,7 +21,8 @@ class Lane extends Component {
     loading: false,
     currentPage: this.props.currentPage,
     cards: this.props.cards,
-    placeholderIndex: -1
+    placeholderIndex: -1,
+    shouldUpdate: true
   }
 
   handleScroll = evt => {
@@ -230,7 +231,11 @@ const cardTarget = {
       return
     }
     const placeholderIndex = getPlaceholderIndex(monitor.getClientOffset().y, findDOMNode(component).scrollTop)
-    component.setState({placeholderIndex})
+
+    if(component.state.shouldUpdate){
+      component.setState({ placeholderIndex: placeholderIndex, shouldUpdate: false });
+      setTimeout(() => component.setState({ shouldUpdate: true}), 50)
+    }
 
     return monitor.isOver()
 
