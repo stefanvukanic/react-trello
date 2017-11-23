@@ -232,9 +232,9 @@ const cardTarget = {
     }
     const placeholderIndex = getPlaceholderIndex(monitor.getClientOffset().y, findDOMNode(component).scrollTop)
 
-    if(component.state.shouldUpdate){
-      component.setState({ placeholderIndex: placeholderIndex, shouldUpdate: false });
-      setTimeout(() => component.setState({ shouldUpdate: true}), 50)
+    if (component.state.shouldUpdate) {
+      component.setState({ placeholderIndex: placeholderIndex, shouldUpdate: false })
+      setTimeout(() => component.setState({ shouldUpdate: true }), 50)
     }
 
     return monitor.isOver()
